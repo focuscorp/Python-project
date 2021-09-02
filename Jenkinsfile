@@ -25,14 +25,14 @@ pipeline {
         }
 
         stage('Unit Test') {
-          agent {
+          /*agent {
                docker {
                   //This image parameter downloads the qnib:pytest Docker image and runs this image as a
                   //separate container. The pytest container becomes the agent that Jenkins uses to run the Test
                   //stage of your Pipeline project.
                   image 'qnib/pytest'
                }
-           }
+           }*/
            steps {
                 //sh 'python3 --version'
                 sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
