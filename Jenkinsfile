@@ -1,12 +1,13 @@
 pipeline {
-    agent any
+    agent none
     stages {
 
         stage('install python'){
             steps{
                 //sh 'apt-get -y install python3-pip'
                 //sh 'pip install -r requirements.txt'
-                echo 'Installation Done'
+                //echo 'Installation Done'
+                sh 'pip --version'
             }
         }
         stage('Build') {
