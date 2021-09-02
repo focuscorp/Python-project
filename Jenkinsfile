@@ -1,9 +1,6 @@
 pipeline {
-    agent {
-        docker { image 'python:3-alpine' }
-    }
+    agent none
     stages {
-
         stage('install python'){
             steps{
                 //sh 'apt-get -y install python3-pip'
@@ -12,7 +9,15 @@ pipeline {
             }
         }
         stage('Build') {
-            steps {
+          agent {
+               docker {
+                  //This image parameter downloads the qnib:pytest Docker image and runs this image as a
+                  //separate container. The pytest container becomes the agent that Jenkins uses to run the Test
+                  //stage of your Pipeline project.
+                  image 'python:3-alpine'
+               }
+           }
+           steps {
                 //This sh step runs the Python command to compile your application and
                 //its calc library into byte code files, which are placed into the sources workspace directory
                 sh 'python -m py_compile sources/add2vals.py sources/calc.py'
@@ -21,7 +26,7 @@ pipeline {
                 stash(name: 'compiled-results', includes: 'sources/*.py*')
 
                 echo 'helloworld'
-            }
+           }
         }
 
         stage('Unit Test') {
