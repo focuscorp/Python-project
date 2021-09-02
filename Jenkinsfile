@@ -4,7 +4,7 @@ pipeline {
 
         stage('install python'){
             steps{
-                sh 'sudo apt-get -y install python3-pip'
+                sh 'apt-get -y install python3-pip'
                 sh 'pip install -r requirements.txt'
             }
         }
