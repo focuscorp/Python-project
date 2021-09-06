@@ -1,6 +1,6 @@
 import unittest
 
-import sources.calc
+from sources import calc
 
 
 class TestCalc(unittest.TestCase):
