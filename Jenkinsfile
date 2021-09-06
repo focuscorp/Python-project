@@ -59,7 +59,7 @@ pipeline {
                environment {
                    //VOLUME = '$(pwd)/sources:/src'
                    VOLUME = 'sources:/src'
-                   IMAGE = 'keeword/py2exe'
+                   IMAGE = 'cdrx/pyinstaller-linux:python3'
                }
                steps {
                    //This dir step creates a new subdirectory named by the build number.
@@ -75,8 +75,7 @@ pipeline {
                        //on your simple Python application.
                        //This bundles your add2vals.py Python application into a single standalone executable file
                        //and outputs this file to the dist workspace directory (within the Jenkins home directory).
-                       sh "pip install py2exe"
-                       sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 add2vals.py py2exe'"
+                       sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'"
                    }
                }
                /*post {
