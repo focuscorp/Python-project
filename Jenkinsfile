@@ -1,8 +1,8 @@
 pipeline {
     agent none
     parameters {
-            string(name: 'SRC', defaultValue: 'sources', description: 'Resources Directory')
-            string(name: 'TESTS', defaultValue: 'tests', description: 'Test Directory')
+            string(name: 'SRC', defaultValue: 'sources', description: 'Resources Directory ')
+            string(name: 'TESTS', defaultValue: 'tests', description: 'Test Directory ')
     }
     stages {
         stage('install python'){
