@@ -67,8 +67,6 @@ pipeline {
                    //code files (with .pyc extension) from the previously saved stash. image]
                    //and runs this image as a separate container.
                    dir(path: env.BUILD_ID) {
-                       echo "  fgz + $(pwd)"
-
                        unstash(name: 'compiled-results')
                        //This sh step executes the pyinstaller command (in the PyInstaller container)
                        //on your simple Python application.
