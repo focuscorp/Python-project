@@ -5,7 +5,7 @@ pipeline {
             steps{
                 //sh 'apt-get -y install python3-pip'
                 //sh 'pip install -r requirements.txt'
-                echo 'Installation is Already Done by Docker Agent '
+                echo 'Installation is Already Done by Docker Agent'
             }
         }
         stage('Build') {
@@ -32,7 +32,7 @@ pipeline {
         stage('Unit Test') {
           agent {
                docker {
-                  //This  image parameter downloads the qnib:pytest Docker image and runs this image as a
+                  //This image parameter downloads the qnib:pytest Docker image and runs this image as a
                   //separate container. The pytest container becomes the agent that Jenkins uses to run the Test
                   //stage of your Pipeline project.
                   image 'qnib/pytest:latest'
@@ -40,7 +40,7 @@ pipeline {
            }
            steps {
                 //sh 'python3 --version'
-                sh 'py.test  tests/'
+                sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
            }
         }
     }
