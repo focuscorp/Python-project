@@ -1,9 +1,5 @@
 pipeline {
     agent none
-    parameters {
-            string(name: 'SRC', defaultValue: 'sources', description: 'Resources Directory ')
-            string(name: 'TESTS', defaultValue: 'tests', description: 'Test Directory ')
-    }
     stages {
         stage('install python'){
             steps{
@@ -22,15 +18,12 @@ pipeline {
                }
            }
            steps {
-                echo '${params.SRC}'
                 //This sh step runs the Python command to compile your application and
                 //its calc library into byte code files, which are placed into the sources workspace directory
-                sh 'python -m py_compile ${parameters.SRC}/*.py'
+                sh 'python -m py_compile sources/*.py'
                 //This stash step saves the Python source code and compiled byte code files from the sources
                 //workspace directory for use in later stages.
-                stash(name: 'compiled-results', includes: '${parameters.SRC}/*.py*')
-
-                echo 'helloworld'
+                stash(name: 'compiled-results', includes: 'sources/*.py*')
            }
         }
 
@@ -45,7 +38,7 @@ pipeline {
            }
            steps {
                 //sh 'python3 --version'
-                sh 'py.test --verbose --junit-xml test-reports/results.xml ${params.TESTS}/*.py'
+                sh 'py.test --verbose --junit-xml test-reports/results.xml tests/*.py'
            }
            post {
                  always {
