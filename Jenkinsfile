@@ -52,13 +52,20 @@ pipeline {
         }
 
         stage('Deliver') {
-           agent any
+               agent {
+                   docker {
+                       //This image parameter downloads the qnib:pytest Docker image and runs this image as a
+                       //separate container. The pytest container becomes the agent that Jenkins uses to run the Test
+                       //stage of your Pipeline project.
+                       image 'cdrx/pyinstaller-linux:python3'
+                   }
+               }
                //This environment block defines two variables which will be used later in the 'Deliver' stage
-               environment {
+               /*environment {
                    //VOLUME = '$(pwd)/sources:/src'
                    VOLUME = '$(pwd)/sources:/src'
                    IMAGE = 'cdrx/pyinstaller-linux:python3'
-               }
+               }*/
                steps {
                    //This dir step creates a new subdirectory named by the build number.
                    //The final program will be created in that directory by pyinstaller.
