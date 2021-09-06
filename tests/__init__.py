@@ -1,1 +1,1 @@
-from test_calc import *
+from .test_calc import *

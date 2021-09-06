@@ -1,2 +1,2 @@
-from add2vals import *
-from calc import *
+from .add2vals import *
+from .calc import *
