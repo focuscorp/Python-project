@@ -1,6 +1,10 @@
 import unittest
+
+# import the package
 import sources
-from sources import *
+
+# import the calc module from sources package
+from sources import calc
 
 
 class TestCalc(unittest.TestCase):
