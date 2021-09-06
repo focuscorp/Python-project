@@ -52,20 +52,13 @@ pipeline {
         }
 
         stage('Deliver') {
-               agent {
-                   docker {
-                       //This image parameter downloads the qnib:pytest Docker image and runs this image as a
-                       //separate container. The pytest container becomes the agent that Jenkins uses to run the Test
-                       //stage of your Pipeline project.
-                       image 'cdrx/pyinstaller-linux:python3'
-                   }
-               }
+           agent any
                //This environment block defines two variables which will be used later in the 'Deliver' stage
-               /*environment {
+               environment {
                    //VOLUME = '$(pwd)/sources:/src'
                    VOLUME = '$(pwd)/sources:/src'
                    IMAGE = 'cdrx/pyinstaller-linux:python3'
-               }*/
+               }
                steps {
                    //This dir step creates a new subdirectory named by the build number.
                    //The final program will be created in that directory by pyinstaller.
@@ -74,13 +67,14 @@ pipeline {
                    //code files (with .pyc extension) from the previously saved stash. image]
                    //and runs this image as a separate container.
                    dir(path: env.BUILD_ID) {
+                       echo $(pwd)
+
                        unstash(name: 'compiled-results')
                        //This sh step executes the pyinstaller command (in the PyInstaller container)
                        //on your simple Python application.
                        //This bundles your add2vals.py Python application into a single standalone executable file
                        //and outputs this file to the dist workspace directory (within the Jenkins home directory).
-                       //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'"
-                       sh "pyinstaller -F add2vals.py"
+                       sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'"
                    }
                }
                /*post {
