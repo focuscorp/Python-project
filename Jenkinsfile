@@ -40,7 +40,7 @@ pipeline {
            }
            steps {
                 //sh 'python3 --version'
-                sh 'py.test --verbose --junit-xml test-reports/results.xml tests/test_calc.py'
+                sh 'py.test --verbose --junit-xml test-reports/results.xml tests/*.py'
            }
         }
     }
