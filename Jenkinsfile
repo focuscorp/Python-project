@@ -51,12 +51,14 @@ pipeline {
           }
         }
 
-        stage('Deliver') {
+
+        //Deliver
+        stage('Packaging') {
            agent any
                //This environment block defines two variables which will be used later in the 'Deliver' stage
                environment {
                    //VOLUME = '$(pwd)/sources:/src'
-                   VOLUME = '$(pwd)/sources:/src'
+                   VOLUME = './sources:/src'
                    IMAGE = 'cdrx/pyinstaller-linux:python3'
                }
                steps {
@@ -67,7 +69,7 @@ pipeline {
                    //code files (with .pyc extension) from the previously saved stash. image]
                    //and runs this image as a separate container.
                    dir(path: env.BUILD_ID) {
-                       //unstash(name: 'compiled-results')
+                       unstash(name: 'compiled-results')
 
                        //This sh step executes the pyinstaller command (in the PyInstaller container)
                        //on your simple Python application.
