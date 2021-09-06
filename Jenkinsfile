@@ -59,7 +59,7 @@ pipeline {
                environment {
                    //VOLUME = '$(pwd)/sources:/src'
                    VOLUME = 'sources:/src'
-                   IMAGE = 'keeword/py2exe:python3'
+                   IMAGE = 'keeword/py2exe'
                }
                steps {
                    //This dir step creates a new subdirectory named by the build number.
