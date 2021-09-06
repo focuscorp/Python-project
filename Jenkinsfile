@@ -5,7 +5,7 @@ pipeline {
             steps{
                 //sh 'apt-get -y install python3-pip'
                 //sh 'pip install -r requirements.txt'
-                echo 'Installation is Already Done by Docker Agent'
+                echo 'Installation is Already Done by Docker Agent '
             }
         }
         stage('Build') {
