@@ -78,7 +78,7 @@ pipeline {
                        //and outputs this file to the dist workspace directonry (within the Jenkins home directory).
                        //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'"
 
-                       sh 'cat sources'
+                       //sh 'cat sources'
                        //used PyInstaller as Module
                        sh "pwd"
 
@@ -88,7 +88,7 @@ pipeline {
 
                         // docker run <arguments> <image> <command>
                         //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py' "
-                        sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F /src/add2vals.py'"
+                        sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py'"
 
 
                    }
