@@ -71,7 +71,7 @@ pipeline {
                    dir(path: env.BUILD_ID) {
                        unstash(name: 'compiled-results')
 
-                       //This sh step executes the pyinstaller command (in the PyInstaller container)
+                       //This sh step executes the pyinstalle r command (in the PyInstaller container)
                        //on your simple Python application.
                        //This bundles your add2vals.py  Python application into a single standalone executable file
                        //and outputs this file to the dist workspace directory (within the Jenkins home directory).
