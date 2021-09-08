@@ -64,7 +64,7 @@ pipeline {
                steps {
                    //This dir step creates a new subdirectory named by the build number.
                    //The final program will be created in that directory by pyinstaller.
-                   //BUILD_ID is one of the pre-defined Jenkins environment variables.
+                   //BUILD_ID is one of the pre-defined Jenkins environment variacbles.
                    //This unstash step restores the Python source code and compiled byte
                    //code files (with .pyc extension) from the previously saved stash. image]
                    //and runs this image as a separate container.
