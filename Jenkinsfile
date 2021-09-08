@@ -59,7 +59,7 @@ pipeline {
                //This environment block defines two variables which will be used later in the 'Deliver' stage
                environment {
                    //VOLUME = '$(pwd)/sources:/src '
-                   VOLUME = '$PWD/sources:/src'
+                   VOLUME = '$PWD/sources/:/src/'
                    IMAGE = 'cdrx/pyinstaller-linux:python3'
                }
                steps {
@@ -80,11 +80,11 @@ pipeline {
 
                        //sh 'cat sources'
                        //used PyInstaller as Module
-                       sh "pwd"
+                       //sh "pwd"
 
 
                        //sh "cd /src"
-                       sh "ls -l"
+                       //sh "ls -l"
 
                         // docker run <arguments> <image> <command>
                         //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py' "
