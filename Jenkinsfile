@@ -59,7 +59,7 @@ pipeline {
                environment {
                    //VOLUME = '$(pwd)/sources:/src '
                    VOLUME = '$(pwd)/sources:/src'
-                   IMAGE = 'six8/pyinstaller-alpine'
+                   IMAGE = 'python:3-alpine'
                }
                steps {
                    //This dir step creates a new subdirectory named by the build number.
