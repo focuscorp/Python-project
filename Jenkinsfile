@@ -41,7 +41,7 @@ pipeline {
                        //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'"
 
                        //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py' "
-                       sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F --onefile add2vals.py'"
+                       sh "docker run --rm -v ${VOLUME} ${IMAGE} -w /src 'python3 -m PyInstaller -F --onefile add2vals.py'"
                    }
                }
                /*post {
