@@ -78,7 +78,7 @@ pipeline {
                        //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'"
 
                        sh "docker run --rm -v ${VOLUME} ${IMAGE}"
-                       //sh 'pip install pyinstaller'
+                       //sh 'pip install pyinstaller'-
                        sh "pyinstaller -F add2vals.py"
                    }
                }
