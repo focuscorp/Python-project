@@ -24,6 +24,7 @@ pipeline {
                 //This stash step saves the Python source code and compiled byte code files from the sources
                 //workspace directory for use in later stages.
                 stash(name: 'compiled-results', includes: 'sources/*.py')
+                preserveStashes()
            }
         }
 
@@ -69,7 +70,7 @@ pipeline {
                    //code files (with .pyc extension) from the previously saved stash. image]
                    //and runs this image as a separate container.
                    dir(path: env.BUILD_ID) {
-                       unstash(name: 'compiled-results')
+                       //unstash(name: 'compiled-results')
 
                        //This sh step executes the pyinstaller  command (in the PyInstaller container)
                        //on your simple Python application.
@@ -82,7 +83,7 @@ pipeline {
 
                        // docker run <arguments> <image> <command>
                        //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py' "
-                       sh "docker run --rm -v ${VOLUME} ${IMAGE} 'sudo find / -name \"add2vals\"' "
+                       sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py' "
 
                        //sh "cd /src"
                        sh "ls -l"
