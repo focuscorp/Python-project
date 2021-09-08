@@ -87,19 +87,19 @@ pipeline {
 
                         // docker run <arguments> <image> <command>
                         //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py' "
-                        sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F *.py' "
+                        sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py'"
 
 
                    }
                }
-               /*post {
+               post {
                    success {
                         //This archiveArtifacts step archives the standalone executable file and exposes this file
                         //through the Jenkins interface.
                         archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals"
                         sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                    }
-               }*/
+               }
         }
 
 
