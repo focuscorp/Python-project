@@ -79,7 +79,7 @@ pipeline {
 
                        //used PyInstaller as Module
                        sh "pwd"
-                       sh "docker --rm -v ${VOLUME} ${IMAGE}"
+                       sh "docker run --rm -v ${VOLUME} ${IMAGE}"
                        sh "cd /src"
                        sh "ls"
 
