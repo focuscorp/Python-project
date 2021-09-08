@@ -87,7 +87,7 @@ pipeline {
 
                         // docker run <arguments> <image> <command>
                         //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py' "
-                        sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py'"
+                        sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F /src/add2vals.py'"
 
 
                    }
