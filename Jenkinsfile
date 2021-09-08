@@ -80,8 +80,8 @@ pipeline {
                        //used PyInstaller as Module
                        sh "pwd"
                        sh "docker run --rm -v ${VOLUME} ${IMAGE}"
-                       sh "cd /src"
-                       sh "ls"
+                       //sh "cd /src"
+                       sh "ls -l"
 
                        //sh "python -m PyInstaller -F add2vals.py"
 
