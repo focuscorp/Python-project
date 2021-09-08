@@ -59,7 +59,7 @@ pipeline {
                //This environment block defines two variables which will be used later in the 'Deliver' stage
                environment {
                    //VOLUME = '$(pwd)/sources:/src '
-                   VOLUME = '$PWD/sources:/src'
+                   VOLUME = '$PWD:/src'
                    IMAGE = 'python:3-alpine'
                }
                steps {
@@ -83,7 +83,7 @@ pipeline {
 
                        // docker run <arguments> <image> <command>
                        //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py' "
-                       sh "docker run --rm -v ${VOLUME} -i ${IMAGE} 'python3 -m PyInstaller -F add2vals.py' "
+                       sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py' "
 
                        //sh "cd /src"
                        sh "ls -l"
