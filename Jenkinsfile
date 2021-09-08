@@ -60,7 +60,7 @@ pipeline {
                environment {
                    //VOLUME = '$(pwd)/sources:/src '
                    VOLUME = '$PWD/sources:/src'
-                   IMAGE = 'python:3-alpine'
+                   IMAGE = 'cdrx/pyinstaller-linux:python2'
                }
                steps {
                    //This dir step creates a new subdirectory named by the build number.
