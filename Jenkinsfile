@@ -30,7 +30,7 @@ pipeline {
         stage('Packaging') {
            agent any
                environment {
-                   //VOLUME = '$(pwd)/sources:/src '
+                   //VOLUME = '$(pwd)/sources:/src'
                    VOLUME = '$PWD/sources:/src'
                    IMAGE = 'cdrx/pyinstaller-linux:python3'
                }
