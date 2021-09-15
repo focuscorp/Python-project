@@ -41,17 +41,25 @@ pipeline {
                        //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'"
 
                        //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py' "
-                       sh "docker run --rm -v ${VOLUME} ${IMAGE} 'python3 -m PyInstaller -F add2vals.py'"
+
+                       //https://github.com/jordansissel/fpm/wiki
+                       //Build packages for multiple platforms
+                       //fpm -s <source type> -t <target type> [options]
+                       //this method is not working and it creates warning
+                       //sh 'fpm -s python -t zip .'
+                       //https://docs.python.org/3/distutils/builtdist.html
+                       sh 'python3 setup.py bdist --format=zip'
+                       sh 'mv *.zip ${env.BUILD_ID}/sources/dist/'
                    }
                }
-               /*post {
+               post {
                    success {
                         //This archiveArtifacts step archives the standalone executable file and exposes this file
                         //through the Jenkins interface.
-                        archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals"
+                        archiveArtifacts "${env.BUILD_ID}/sources/dist/*"
                         sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                    }
-               }*/
+               }
         }
     }
 }
