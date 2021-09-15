@@ -8,8 +8,8 @@ pipeline {
                }
            }
            steps {
-                sh 'python -m py_compile sources/*.py'
-                stash(name: 'compiled-results', includes: 'sources/*.py*')
+                sh 'python -m py_compile sources/*.py setup.py'
+                stash(name: 'compiled-results', includes: 'sources/*.py* , setup.py')
            }
         }
         stage('Unit Test') {
@@ -31,7 +31,7 @@ pipeline {
            agent any
                environment {
                    //VOLUME = '$(pwd)/sources:/src '
-                   VOLUME = '$PWD/:/'
+                   VOLUME = '$PWD/sources:/src'
                    IMAGE = 'cdrx/pyinstaller-linux:python3'
                }
                steps {
@@ -57,7 +57,7 @@ pipeline {
                         //This archiveArtifacts step archives the standalone executable file and exposes this file
                         //through the Jenkins interface.
                         archiveArtifacts "${env.BUILD_ID}/sources/dist/*"
-                        sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+                        //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                    }
                }
         }
