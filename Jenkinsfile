@@ -31,7 +31,7 @@ pipeline {
            agent any
                environment {
                    //VOLUME = '$(pwd)/sources:/src '
-                   VOLUME = {'$PWD/sources:/src', '$PWD/:/'}
+                   VOLUME = '$PWD/:/'
                    IMAGE = 'cdrx/pyinstaller-linux:python3'
                }
                steps {
