@@ -56,7 +56,7 @@ pipeline {
                    success {
                         //This archiveArtifacts step archives the standalone executable file and exposes this file
                         //through the Jenkins interface.
-                        archiveArtifacts "${env.BUILD_ID}/sources/dist/*"
+                        //archiveArtifacts "${env.BUILD_ID}/sources/dist/*"
                         archiveArtifacts "${env.BUILD_ID}/dist/*"
                         //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                         //sh 'helloMohh'
