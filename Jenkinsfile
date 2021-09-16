@@ -49,7 +49,7 @@ pipeline {
                        //sh 'fpm -s python -t zip .'
                        //https://docs.python.org/3/distutils/builtdist.html
                        sh 'python3 setup.py bdist --format=zip'
-                       sh 'mv *.zip ${env.BUILD_ID}/sources/dist/'
+                       sh 'mv *.zip ${env.BUILD_ID}/dist/'
                    }
                }
                post {
