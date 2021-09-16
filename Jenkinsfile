@@ -49,10 +49,10 @@ pipeline {
                        //sh 'fpm -s python -t zip .'
                        //https://docs.python.org/3/distutils/builtdist.html
                        sh 'python3 setup.py bdist_dumb --format=zip'
-                       sh 'mv *.zip ${env.BUILD_ID}/dist/'
+                       //sh 'mv *.zip ${env.BUILD_ID}/dist/'
                    }
                }
-               /*post {
+               post {
                    success {
                         //This archiveArtifacts step archives the standalone executable file and exposes this file
                         //through the Jenkins interface.
@@ -61,7 +61,7 @@ pipeline {
                         //sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                         //sh 'helloMohh'
                    }
-               }*/
+               }
         }
     }
 }
