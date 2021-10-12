@@ -37,7 +37,8 @@ pipeline {
                    dir(path: env.BUILD_ID) { 
                        unstash(name: 'compiled-results') 
                        //https://docs.python.org/3/distutils/builtdist.html 
-                       sh 'python3 /src/setup.py bdist_dumb --format=zip' 
+                       sh 'ls -l'  
+                        sh 'python3 ./setup.py bdist_dumb --format=zip' 
                     } 
                } 
                post { 
