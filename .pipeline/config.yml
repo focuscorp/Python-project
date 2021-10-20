@@ -34,12 +34,12 @@ nexusUpload:
 
 cloudFoundryDeploy:
   cloudFoundry:
-    #org: '5955a6d8trial'
+    org: '5955a6d8trial'
     space: 'dev'
-    #credentialsId: 'CF_NadimCredential'
-    org: 4612c178trial
+    credentialsId: 'CF_NadimCredential'
+    #org: 4612c178trial
     #space: Focus Corporation
-    credentialsId: CF_Suser
+    #credentialsId: CF_Suser
 
 stages:
   frontendUnitTests:
