@@ -41,7 +41,10 @@ pipeline {
                        //https://docs.python.org/3/distutils/builtdist.html 
                        sh 'cd sources'  
                         sh 'ls -l'  
-                        sh 'python3 setup.py bdist_dumb --format=zip' 
+                        sh 'python3 setup.py bdist_dumb --format=zip'
+
+
+                        sh "pip install twine"
                     } 
                } 
                post { 
