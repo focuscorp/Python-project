@@ -10,7 +10,7 @@ pipeline {
           steps { 
                sh 'python -m py_compile sources/*.py' 
                stash(name: 'compiled-results', includes: 'sources/*.py*') 
-                              stash(name: 'setUpPy', includes: 'setup.py*') 
+               stash(name: 'setUpPy', includes: 'setup.py*') 
           } 
        } 
      stage('Unit Test') {
