@@ -42,6 +42,7 @@ pipeline {
                        sh 'cd sources'  
                        sh 'ls -l'
                        sh 'python3 setup.py bdist_dumb --format=zip'
+                       sh 'python3 -m twine upload --repository-url http://artefact.focus.com.tn:8081/repository/pypi-internal/ dist/* -u admin -p nexus-p@$$word'
 
 
 
@@ -52,7 +53,6 @@ pipeline {
                          archiveArtifacts "${env.BUILD_ID}/dist/*"
                          //sh 'pip install twine'
                          //sh 'ls ${env.BUILD_ID}/dist/*'
-                         sh 'python3 -m twine upload --repository-url http://artefact.focus.com.tn:8081/repository/pypi-internal/ dist/* -u admin -p nexus-p@$$word'
 
                    }
                }
