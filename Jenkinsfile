@@ -52,7 +52,7 @@ pipeline {
                          archiveArtifacts "${env.BUILD_ID}/dist/*"
                          //sh 'pip install twine'
                          //sh 'ls ${env.BUILD_ID}/dist/*'
-                         sh 'python3 -m twine upload --repository-url http://artefact.focus.com.tn:8081/repository/pypi-internal/ "${env.BUILD_ID}/dist/*" -u admin -p nexus-p@$$word'
+                         sh 'python3 -m twine upload --repository-url http://artefact.focus.com.tn:8081/repository/pypi-internal/ dist/* -u admin -p nexus-p@$$word'
 
                    }
                }
