@@ -10,7 +10,8 @@ pipeline {
           steps { 
                sh 'python -m py_compile sources/*.py' 
                stash(name: 'compiled-results', includes: 'sources/*.py*') 
-               stash(name: 'setUpPy', includes: 'setup.py*') 
+               stash(name: 'setUpPy', includes: 'setup.py*')
+               stash(name: 'pypirc', includes: '*pypirc')
           } 
        } 
      stage('Unit Test') {
@@ -37,8 +38,9 @@ pipeline {
                steps { 
                    dir(path: env.BUILD_ID) { 
                        unstash(name: 'compiled-results') 
-                       unstash(name: 'setUpPy') 
-                       //https://docs.python.org/3/distutils/builtdist.html 
+                       unstash(name: 'setUpPy')
+                       unstash(name: 'pypirc')
+                       //https://docs.python.org/3/distutils/builtdist.html
                        sh 'cd sources'  
                        sh 'ls -l'
                        sh 'python3 setup.py bdist_dumb --format=zip'
