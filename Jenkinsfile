@@ -50,7 +50,7 @@ pipeline {
                post {
                    success {
                         archiveArtifacts "${env.BUILD_ID}/dist/*"
-                        twine upload --repository-url http://artefact.focus.com.tn:8081/repository/pypi-internal/ dist/*
+                        sh 'twine upload --repository-url http://artefact.focus.com.tn:8081/repository/pypi-internal/ dist/*'
 
                    }
                }
