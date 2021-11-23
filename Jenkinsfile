@@ -50,7 +50,8 @@ pipeline {
                post {
                    success {
                         archiveArtifacts "${env.BUILD_ID}/dist/*"
-                         sh 'pip install twine'
+                         //sh 'pip install twine'
+                        sh 'python3 -m twine'
                         sh 'twine upload --repository-url http://artefact.focus.com.tn:8081/repository/pypi-internal/ dist/*'
 
                    }
