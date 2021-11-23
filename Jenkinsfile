@@ -40,21 +40,20 @@ pipeline {
                        unstash(name: 'setUpPy') 
                        //https://docs.python.org/3/distutils/builtdist.html 
                        sh 'cd sources'  
-                        sh 'ls -l'  
-                        sh 'python3 setup.py bdist_dumb --format=zip'
+                       sh 'ls -l'
+                       sh 'python3 setup.py bdist_dumb --format=zip'
 
 
-                        sh "pip install twine"
-                    } 
-               } 
-               post { 
-                   success { 
+                       sh 'pip install twine'
+                    }
+               }
+               post {
+                   success {
                         archiveArtifacts "${env.BUILD_ID}/dist/*"
                         twine upload --repository-url http://artefact.focus.com.tn:8081/repository/pypi-internal/ dist/*
 
-                   } 
-               } 
-        } 
+                   }
+               }
+        }
     }
 }
-
