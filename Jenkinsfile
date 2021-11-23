@@ -44,12 +44,13 @@ pipeline {
                        sh 'python3 setup.py bdist_dumb --format=zip'
 
 
-                       sh 'pip install twine'
+
                     }
                }
                post {
                    success {
                         archiveArtifacts "${env.BUILD_ID}/dist/*"
+                         sh 'pip install twine'
                         sh 'twine upload --repository-url http://artefact.focus.com.tn:8081/repository/pypi-internal/ dist/*'
 
                    }
