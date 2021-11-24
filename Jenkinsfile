@@ -11,7 +11,7 @@ pipeline {
                sh 'python -m py_compile sources/*.py' 
                stash(name: 'compiled-results', includes: 'sources/*.py*') 
                stash(name: 'setUpPy', includes: 'setup.py*')
-               stash(name: 'pypirc', includes: '*pypirc')
+               stash(name: 'pypirc', includes: '.pypirc')
           } 
        } 
      stage('Unit Test') {
@@ -47,7 +47,7 @@ pipeline {
                        sh 'python3 setup.py sdist bdist_wheel'
                        //sh 'python3 -m twine upload --repository-url http://artefact.focus.com.tn:8081/repository/pypi-internal/ dist/* -u admin -p nexus-p@$$word --verbose'
                        sh 'python3 -m twine upload dist/* -r nexus --verbose'
-
+                       sh 'ls -l'
 
 
                     }
