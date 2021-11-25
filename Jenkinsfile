@@ -43,7 +43,7 @@ pipeline {
                        //https://docs.python.org/3/distutils/builtdist.html
                        sh 'cd sources'  
                        sh 'ls -l'
-                       //sh 'python3 setup.py bdist_dumb --format=zip'
+                       sh 'python3 setup.py bdist_dumb --format=zip'
                        sh 'python3 setup.py sdist bdist_wheel'
                        //sh 'python3 -m twine upload --repository-url http://artefact.focus.com.tn:8081/repository/pypi-internal/ dist/* -u admin -p nexus-p@$$word --verbose'
                        sh 'python3 -m twine upload -r nexus dist/* --config-file .pypirc --verbose'
