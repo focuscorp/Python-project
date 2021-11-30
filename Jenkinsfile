@@ -15,6 +15,22 @@ pipeline {
           } 
        } 
  
+       stage('Unit Test') { 
+         agent { 
+              docker { 
+                 image 'qnib/pytest:latest' 
+              } 
+         } 
+         steps { 
+              sh 'py.test --verbose --junit-xml test-reports/results.xml tests/*.py' 
+         } 
+         post { 
+              always { 
+                  junit 'test-reports/results.xml' 
+              } 
+         } 
+       }
+ 
      stage('Packaging') { 
            agent any 
                environment { 
