@@ -31,7 +31,7 @@ pipeline {
                        sh 'ls -l'  
                        sh 'python3 setup.py bdist_dumb --format=zip' 
                        sh 'python3 setup.py sdist bdist_wheel' 
-                       sh 'python -m twine upload -r nexus-pypi dist/* --config-file .pypirc --verbose' 
+                       sh 'python3 -m twine upload -r nexus-pypi dist/* --config-file .pypirc --verbose' 
                     } 
                } 
                post { 
