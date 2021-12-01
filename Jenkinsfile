@@ -28,10 +28,11 @@ pipeline {
                        unstash(name: 'pypirc') 
                        //https://docs.python.org/3/distutils/builtdist.html 
                        sh 'cd sources'  
-                        sh 'ls -l'  
-                        sh 'python3 setup.py bdist_dumb --format=zip' 
+                       sh 'ls -l'  
+                       sh 'python3 setup.py bdist_dumb --format=zip' 
                        sh 'python3 setup.py sdist bdist_wheel' 
-                       sh 'python3 -m twine upload -r nexus-pypi dist/* --config-file .pypirc --verbose' 
+                       sh 'pip install twine'
+                       sh 'twine upload -r nexus-pypi dist/* --config-file .pypirc --verbose' 
                     } 
                } 
                post { 
