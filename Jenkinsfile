@@ -50,7 +50,7 @@ pipeline {
                        sh 'python3 -m twine upload -r nexus-pypi dist/* --config-file .pypirc --verbose' 
                       
                        sh 'wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -'
-                       sh 'echo /"deb https://packages.cloudfoundry.org/debian stable main/" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list'
+                       sh 'echo /"deb https://packages.cloudfoundry.org/debian stable main/" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list'
                        sh 'apt-get update'
                        sh 'apt-get install cf8-cli'
                        sh 'cf --help'
