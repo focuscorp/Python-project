@@ -10,8 +10,9 @@ pipeline {
           steps { 
                sh 'python -m py_compile sources/*.py' 
                stash(name: 'compiled-results', includes: 'sources/*.py*') 
-                              stash(name: 'setUpPy', includes: 'setup.py*') 
+               stash(name: 'setUpPy', includes: 'setup.py*') 
                stash(name: 'pypirc', includes: '.pypirc') 
+               stash(name: 'pckgJson', includes: 'package.json') 
           } 
        } 
  
@@ -42,6 +43,7 @@ pipeline {
                        unstash(name: 'compiled-results') 
                        unstash(name: 'setUpPy') 
                        unstash(name: 'pypirc') 
+                       unstash(name: 'pckgJson') 
                        //https://docs.python.org/3/distutils/builtdist.html 
                        sh 'cd sources'  
                         sh 'ls -l'  
