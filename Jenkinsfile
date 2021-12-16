@@ -12,7 +12,7 @@ pipeline {
                stash(name: 'compiled-results', includes: 'sources/*.py*') 
                stash(name: 'setUpPy', includes: 'setup.py*') 
                stash(name: 'pypirc', includes: '.pypirc') 
-               stash(name: 'pckgJson', includes: 'package.json') 
+               stash(name: 'procfile', includes: 'Procfile') 
           } 
        } 
  
@@ -36,14 +36,15 @@ pipeline {
            agent any 
                environment { 
                    VOLUME = '$PWD/sources:/src' 
-                   IMAGE = 'cdrx/pyinstaller-linux:python3' 
+                   //IMAGE = 'cdrx/pyinstaller-linux:python3' 
+                   IMAGE = 'pypi/twine:latest'
                } 
                steps { 
                    dir(path: env.BUILD_ID) { 
                        unstash(name: 'compiled-results') 
                        unstash(name: 'setUpPy') 
                        unstash(name: 'pypirc') 
-                       unstash(name: 'pckgJson') 
+                       unstash(name: 'procfile') 
                        //https://docs.python.org/3/distutils/builtdist.html 
                        sh 'cd sources'  
                         sh 'ls -l'  
