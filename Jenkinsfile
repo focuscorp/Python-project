@@ -47,11 +47,12 @@ pipeline {
                         sh 'ls -l'  
                         sh 'python3 setup.py bdist_dumb --format=zip' 
                       
-                      sh 'python3 -m pip install --upgrade twine wget' 
+                       
                        sh 'python3 setup.py sdist bdist_wheel' 
                        sh 'python3 -m twine upload -r nexus-pypi dist/* --config-file .pypirc --verbose' 
                       
                       sh 'cd ..' 
+                      sh 'sudo apt-get install wget'
                        sh 'wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -' 
                        sh 'wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add -' 
                        sh 'echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list' 
