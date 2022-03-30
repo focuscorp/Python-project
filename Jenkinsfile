@@ -46,6 +46,8 @@ pipeline {
                        sh 'cd sources'  
                         sh 'ls -l'  
                         sh 'python3 setup.py bdist_dumb --format=zip' 
+                      
+                      sh 'python3 -m pip install --upgrade twine wget' 
                        sh 'python3 setup.py sdist bdist_wheel' 
                        sh 'python3 -m twine upload -r nexus-pypi dist/* --config-file .pypirc --verbose' 
                       
